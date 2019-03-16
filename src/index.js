@@ -1,14 +1,15 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 // import './style.css';
 
-function component() {
+async function getComponent() {
     var element = document.createElement('div');
+    const _ = await import(/* webpackChunkName: "lodash" */ 'lodash');
 
-     // Lodash, now imported by this script
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
 
     return element;
 }
 
-document.body.appendChild(component());
+getComponent().then(component => {
+    document.body.appendChild(component);
+})
